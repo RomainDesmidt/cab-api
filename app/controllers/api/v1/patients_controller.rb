@@ -45,7 +45,7 @@ class Api::V1::PatientsController < Api::V1::BaseController
   end
 
   def patient_params
-    params.require(:patient).permit(:nom, :prenom, :tel, :age)
+    params.require(:patient).permit(:nom, :prenom, :tel, :age, :rdvs_attributes => [ :id, :date_rdv, :salle, :examen ])
   end
 
   def render_error
