@@ -1,12 +1,17 @@
 class Api::V1::RdvsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+  acts_as_token_authentication_handler_for User, except: [ :index, :show, :index_all ]
   before_action :set_rdv, only: [ :update, :destroy ]
+
   def index
     @patient = Patient.find(params[:patient_id])
     @rdv = policy_scope(Rdv)
     @rdvs = @patient.rdvs
     authorize @rdvs
     authorize @patient
+  end
+
+  def index_all
+    @rdvs = policy_scope(Rdv)
   end
 
   def create

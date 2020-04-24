@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :rdvs, only: [ :index, :create ]
       end
       resources :rdvs, only: [ :update, :show, :destroy ]
+      get 'rdvs/', to: 'rdvs#index_all'
     end
   end
 end
