@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :patients, only: [ :index, :show, :update, :create, :destroy ] do
-        resources :rdvs, only: [ :index, :show, :update, :create, :destroy ]
+        resources :rdvs, only: [ :index, :create ]
       end
+      resources :rdvs, only: [ :update, :show, :destroy ]
     end
   end
 end
